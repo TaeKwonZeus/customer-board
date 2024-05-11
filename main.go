@@ -16,11 +16,17 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
+	r.Route("/api", func(r chi.Router) {
+		r.Get("/ping", func(w http.ResponseWriter, r *http.Request) {
+			_, _ = w.Write([]byte("pong"))
+		})
+	})
+
 	r.Get("/favicon.ico", iconHandler)
 	r.Get("/assets/{asset}", assetHandler)
 	r.Get("/*", frontendHandler)
 
-	http.ListenAndServe(":8080", r)
+	_ = http.ListenAndServe(":8080", r)
 }
 
 func iconHandler(w http.ResponseWriter, r *http.Request) {
