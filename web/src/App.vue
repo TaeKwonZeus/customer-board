@@ -6,7 +6,6 @@ import { ref } from "vue";
 const data = ref("");
 
 fetch("/api/ping").then(r => r.text()).then(t => data.value = t)
-
 </script>
 
 <template>
