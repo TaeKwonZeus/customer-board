@@ -1,7 +1,7 @@
 package router
 
 import (
-	"customer-board/src/handlers"
+	"customer-board/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"net/http"
