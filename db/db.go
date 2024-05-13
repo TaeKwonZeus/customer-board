@@ -11,11 +11,13 @@ type DB struct {
 }
 
 func New() (*DB, error) {
-	cfg := mysql.Config{User: os.Getenv("DB_USER"),
-		Passwd: os.Getenv("DB_PASS"),
-		Net:    "tcp",
-		Addr:   "127.0.0.1:3306",
-		DBName: os.Getenv("DB_NAME"),
+	cfg := mysql.Config{
+		User:                 os.Getenv("DB_USER"),
+		Passwd:               os.Getenv("DB_PASS"),
+		DBName:               os.Getenv("DB_NAME"),
+		Net:                  "tcp",
+		Addr:                 "127.0.0.1:3306",
+		AllowNativePasswords: true,
 	}
 
 	db, err := sql.Open("mysql", cfg.FormatDSN())

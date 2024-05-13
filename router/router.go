@@ -8,21 +8,21 @@ import (
 	"path/filepath"
 )
 
-func New() chi.Router {
+func New(env handlers.Env) chi.Router {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
-	r.Mount("/api", apiRouter())
+	r.Mount("/api", apiRouter(env))
 	r.Mount("/", frontendRouter())
 
 	return r
 }
 
-func apiRouter() chi.Router {
+func apiRouter(env handlers.Env) chi.Router {
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
 
-	r.Get("/ping", handlers.Ping)
+	r.Get("/ping", env.Ping)
 
 	return r
 }
