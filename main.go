@@ -28,7 +28,7 @@ func main() {
 	}
 
 	go func() {
-		log.Infof("Starting server on port %s", os.Getenv("PORT"))
+		log.Infof("Starting server on port %s: http://localhost:%s", os.Getenv("PORT"), os.Getenv("PORT"))
 		if err := httpServer.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			log.Fatal(err)
 		}
